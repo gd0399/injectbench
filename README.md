@@ -62,4 +62,20 @@ Each run writes `results.jsonl` (with every action the agent took), `summary.jso
 Publish numbers only from `--backend llm`.
 
 ## Results
-_Run `--backend llm` and fill this in._
+### Claude Haiku 5.5 and Sonnet 5.5, Nov 2026: 144 attacks + 12 benign tasks per defense, 1,560 runs
+
+| defense | attacks that worked (Haiku / Sonnet) | tasks done while under attack (Haiku / Sonnet) | cost per task (Sonnet) | median latency (Sonnet) |
+|---|---|---|---|---|
+| No defense | 0/144 / 0/144 | 100% / 97% | $0.0070 | 3.0s |
+| Classifier | 0/144 / 0/144 | 15% / 15% | $0.0068 | 2.9s |
+| Spotlighting | 0/144 / 0/144 | 100% / 100% | $0.0075 | 3.4s |
+| Tool filter | 0/144 / 0/144 | 99% / 95% | $0.0066 | 4.5s |
+| Dual LLM | 0/144 / 0/144 | 100% / 97% | $0.0110 | 4.6s |
+
+All defenses completed 100% of benign tasks. The 95% CI on every attack-success rate is 0-3%.
+
+**Findings**
+- Neither model followed any of the 8 attack styles, even with no defense. In 134 of 144 attacked runs, Haiku also warned the user about the planted instruction (keyword check). Most of the other 10 were file-sharing runs where it never opened the email.
+- The heuristic classifier flagged and withheld about 90% of attacked content with 0% false positives on benign content. But withholding a whole email or page also hid the data the task needed, so task success under attack fell to 15%. Here the defense did more damage than the attacks.
+- Dual LLM costs 1.6x as much and is 1.5x slower on Sonnet, with no measurable gain against these attacks. Its value is a structural guarantee: the acting model never reads attacker text.
+- These are well-known attack styles. Adaptive attacks that blend into realistic content are the next step.

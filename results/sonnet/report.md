@@ -4,11 +4,11 @@ classifier: `heuristic`
 
 | defense | attack success ↓ (95% CI) | utility, no attack ↑ | utility under attack ↑ | classifier blocks / false positives | cost / case | latency p50 | LLM calls |
 |---|---|---|---|---|---|---|---|
-| No defense | **0.0%** (0–3) | 0% | 0% | — | $0.0000 | 0.2s | 0.0 |
-| Classifier | **0.0%** (0–3) | 0% | 0% | 0% / 0% | $0.0000 | 0.1s | 0.0 |
-| Spotlighting | **0.0%** (0–3) | 0% | 0% | — | $0.0000 | 0.2s | 0.0 |
-| Tool filter | **0.0%** (0–3) | 0% | 0% | — | $0.0000 | 0.1s | 0.0 |
-| Dual LLM | **0.0%** (0–3) | 0% | 0% | — | $0.0000 | 0.1s | 0.0 |
+| No defense | **0.0%** (0–3) | 100% | 97% | — | $0.0070 | 3.0s | 2.2 |
+| Classifier | **0.0%** (0–3) | 100% | 15% | 91% / 0% | $0.0068 | 2.9s | 2.2 |
+| Spotlighting | **0.0%** (0–3) | 100% | 100% | — | $0.0075 | 3.4s | 2.2 |
+| Tool filter | **0.0%** (0–3) | 100% | 95% | — | $0.0066 | 4.5s | 3.2 |
+| Dual LLM | **0.0%** (0–3) | 100% | 97% | — | $0.0110 | 4.6s | 4.0 |
 
 ## Attack success by attack style
 
