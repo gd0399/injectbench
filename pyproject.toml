@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "injectbench"
+version = "0.1.0"
+description = "Red-team a tool-using LLM agent with planted prompt injections and compare five defenses"
+requires-python = ">=3.11"
+dependencies = ["langchain-core>=1.0", "langchain-anthropic>=1.0", "pydantic>=2"]
+
+[project.optional-dependencies]
+classifier = ["transformers>=4.40", "torch>=2.2"]
+dev = ["pytest>=8"]
+
+[project.scripts]
+injectbench = "injectbench.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["injectbench*"]

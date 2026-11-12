@@ -1,0 +1,18 @@
+{
+  "out": "results/offline",
+  "defenses": [
+    "none",
+    "classifier",
+    "spotlight",
+    "tool_filter",
+    "dual_llm"
+  ],
+  "backend": "offline",
+  "model": "anthropic:claude-sonnet-5-5",
+  "fallback_models": [],
+  "attacks": 144,
+  "seed": 0,
+  "workers": 8,
+  "classifier": "heuristic",
+  "limit": null
+}
